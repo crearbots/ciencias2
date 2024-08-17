@@ -13,7 +13,7 @@ public class BusquedaSecuencial {
 
     public Producto buscarPorNombre(Producto[] productos, String nombre) {
         for (Producto producto : productos) {
-            if (producto.nombre.equalsIgnoreCase(nombre)) {
+            if (producto.nombre != null && producto.nombre.equalsIgnoreCase(nombre)) {
                 return producto;
             }
         }
