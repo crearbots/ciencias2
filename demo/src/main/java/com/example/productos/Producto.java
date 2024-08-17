@@ -12,4 +12,14 @@ public class Producto {
         this.precio = precio;
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
+    }    
 }
