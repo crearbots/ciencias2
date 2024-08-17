@@ -1,7 +1,5 @@
 package com.example.productos;
 
-import java.util.Arrays;
-
 public class BusquedaBinaria {
 
     public Producto buscarPorId(Producto[] productos, String id) {

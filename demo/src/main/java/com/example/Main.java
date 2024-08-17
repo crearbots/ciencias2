@@ -26,14 +26,18 @@ public class Main {
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();  // Limpiar buffer
-
+            // Declaración de variables
+            String id;
+            long startTimeId;
+            Producto productoId;
+            long endTimeId;
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el ID del producto: ");
-                    String id = scanner.nextLine();
-                    long startTimeId = System.nanoTime();
-                    Producto productoId = busqueda.buscarPorId(datos.productos, id);
-                    long endTimeId = System.nanoTime();
+                    id = scanner.nextLine();
+                    startTimeId = System.nanoTime();
+                    productoId = busqueda.buscarPorId(datos.productos, id);
+                    endTimeId = System.nanoTime();
                     if (productoId != null) {
                         System.out.println("Producto encontrado: " + productoId);
                     } else {
@@ -44,16 +48,16 @@ public class Main {
 
                 case 2:
                     System.out.print("Ingrese el ID del producto: ");
-                    String id = scanner.nextLine();
-                    long startTimeId = System.nanoTime();
-                    Producto productoId = bina.buscarPorId(datos.productos, id);
-                    long endTimeId = System.nanoTime();
+                    id = scanner.nextLine();
+                    startTimeId = System.nanoTime();
+                    productoId = bina.buscarPorId(datos.productos, id);
+                    long endTimeId1 = System.nanoTime();
                     if (productoId != null) {
                         System.out.println("Producto encontrado: " + productoId);
                     } else {
                         System.out.println("Producto no encontrado.");
                     }
-                    System.out.println("Tiempo de búsqueda: " + (endTimeId - startTimeId) + " nanosegundos.");
+                    System.out.println("Tiempo de búsqueda: " + (endTimeId1 - startTimeId) + " nanosegundos.");
                     break;
                 case 3:
                     System.out.print("Ingrese el nombre del producto: ");
