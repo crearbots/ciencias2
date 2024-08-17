@@ -14,13 +14,15 @@ public class Main {
 
         // Instanciar la búsqueda secuencial
         BusquedaSecuencial busqueda = new BusquedaSecuencial();
+        BusquedaBinaria bina = new BusquedaBinaria();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Menú de búsqueda:");
             System.out.println("1. Buscar producto por ID");
-            System.out.println("2. Buscar producto por Nombre");
-            System.out.println("3. Salir");
+            System.out.println("2. Buscar producto por ID B");
+            System.out.println("3. Buscar producto por Nombre");
+            System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();  // Limpiar buffer
@@ -41,6 +43,19 @@ public class Main {
                     break;
 
                 case 2:
+                    System.out.print("Ingrese el ID del producto: ");
+                    String id = scanner.nextLine();
+                    long startTimeId = System.nanoTime();
+                    Producto productoId = bina.buscarPorId(datos.productos, id);
+                    long endTimeId = System.nanoTime();
+                    if (productoId != null) {
+                        System.out.println("Producto encontrado: " + productoId);
+                    } else {
+                        System.out.println("Producto no encontrado.");
+                    }
+                    System.out.println("Tiempo de búsqueda: " + (endTimeId - startTimeId) + " nanosegundos.");
+                    break;
+                case 3:
                     System.out.print("Ingrese el nombre del producto: ");
                     String nombre = scanner.nextLine();
                     long startTimeNombre = System.nanoTime();
@@ -54,7 +69,7 @@ public class Main {
                     System.out.println("Tiempo de búsqueda: " + (endTimeNombre - startTimeNombre) + " nanosegundos.");
                     break;
 
-                case 3:
+                case 4:
                     System.out.println("Saliendo...");
                     scanner.close();
                     return;
