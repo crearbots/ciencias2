@@ -2,6 +2,8 @@ package com.example;
 
 import com.example.productos.*;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
@@ -22,15 +24,18 @@ public class Main {
             System.out.println("1. Buscar producto por ID");
             System.out.println("2. Buscar producto por ID B");
             System.out.println("3. Buscar producto por Nombre");
-            System.out.println("4. Salir");
+            System.out.println("4. Buscar producto por Nombre B");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();  // Limpiar buffer
             // Declaración de variables
             String id;
-            long startTimeId;
-            Producto productoId;
-            long endTimeId;
+            long startTimeId,startTimeNombre;
+            Producto productoId, productoNombre;
+            long endTimeId, endTimeNombre;
+            String nombre;
+
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el ID del producto: ");
@@ -47,24 +52,39 @@ public class Main {
                     break;
 
                 case 2:
+                    Arrays.sort(datos.productos, Comparator.comparing(Producto::getID));
                     System.out.print("Ingrese el ID del producto: ");
                     id = scanner.nextLine();
                     startTimeId = System.nanoTime();
                     productoId = bina.buscarPorId(datos.productos, id);
-                    long endTimeId1 = System.nanoTime();
+                    endTimeId = System.nanoTime();
                     if (productoId != null) {
                         System.out.println("Producto encontrado: " + productoId);
                     } else {
                         System.out.println("Producto no encontrado.");
                     }
-                    System.out.println("Tiempo de búsqueda: " + (endTimeId1 - startTimeId) + " nanosegundos.");
+                    System.out.println("Tiempo de búsqueda: " + (endTimeId - startTimeId) + " nanosegundos.");
                     break;
                 case 3:
                     System.out.print("Ingrese el nombre del producto: ");
-                    String nombre = scanner.nextLine();
-                    long startTimeNombre = System.nanoTime();
-                    Producto productoNombre = busqueda.buscarPorNombre(datos.productos, nombre);
-                    long endTimeNombre = System.nanoTime();
+                    nombre = scanner.nextLine();
+                    startTimeNombre = System.nanoTime();
+                    productoNombre = busqueda.buscarPorNombre(datos.productos, nombre);
+                    endTimeNombre = System.nanoTime();
+                    if (productoNombre != null) {
+                        System.out.println("Producto encontrado: " + productoNombre);
+                    } else {
+                        System.out.println("Producto no encontrado.");
+                    }
+                    System.out.println("Tiempo de búsqueda: " + (endTimeNombre - startTimeNombre) + " nanosegundos.");
+                    break;
+                case 4:
+                Arrays.sort(datos.productos, Comparator.comparing(p -> p.getNombre() == null ? "" : p.getNombre()));
+                    System.out.print("Ingrese el nombre del producto: ");
+                    nombre = scanner.nextLine();
+                    startTimeNombre = System.nanoTime();
+                    productoNombre = bina.buscarPorNombre(datos.productos, nombre);
+                    endTimeNombre = System.nanoTime();
                     if (productoNombre != null) {
                         System.out.println("Producto encontrado: " + productoNombre);
                     } else {
@@ -73,7 +93,7 @@ public class Main {
                     System.out.println("Tiempo de búsqueda: " + (endTimeNombre - startTimeNombre) + " nanosegundos.");
                     break;
 
-                case 4:
+                case 5:
                     System.out.println("Saliendo...");
                     scanner.close();
                     return;

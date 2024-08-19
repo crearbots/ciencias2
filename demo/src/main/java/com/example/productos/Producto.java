@@ -6,6 +6,7 @@ public class Producto {
     public double precio;
     public String descripcion;
 
+
     public Producto(String nombre, String id, double precio, String descripcion) {
         this.nombre = nombre;
         this.id = id;
@@ -21,5 +22,13 @@ public class Producto {
                 ", precio=" + precio +
                 ", descripcion='" + descripcion + '\'' +
                 '}';
-    }    
+    }   
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getID() {
+        return id;
+    }
 }
