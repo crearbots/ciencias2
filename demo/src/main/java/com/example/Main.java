@@ -1,10 +1,12 @@
 package com.example;
 
 import com.example.productos.*;
+import com.example.blockchain.*;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.security.NoSuchAlgorithmException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -14,6 +16,21 @@ public class Main {
         datos.cargarProductosDesdeJSON("data/productos.json");
         System.out.println("Se han cargado " + datos.productos.length + " productos");
 
+        // Crear la blockchain
+        Blockchain blockchain = new Blockchain();
+
+        // Simular algunas transacciones
+        blockchain.agregarTransaccion("1", new Producto[]{datos.productos[100062], datos.productos[100063]});
+        blockchain.agregarTransaccion("2", new Producto[]{datos.productos[100064]});
+        blockchain.agregarTransaccion("3", new Producto[]{datos.productos[100065], datos.productos[100066]});
+
+        // Mostrar la blockchain
+        System.out.println(blockchain);
+        
+        // Validar la blockchain
+        System.out.println("¿Blockchain valida? " + blockchain.validarCadena());
+
+/*------------------------------------------------------------
         // Instanciar la búsqueda secuencial
         BusquedaSecuencial busqueda = new BusquedaSecuencial();
         BusquedaBinaria bina = new BusquedaBinaria();
@@ -102,5 +119,6 @@ public class Main {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         }        
+-------------------------------------------------------    */
     }
 }

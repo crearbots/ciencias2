@@ -2,7 +2,6 @@ package com.example.blockchain;
 
 import com.example.productos.Producto;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
@@ -22,7 +21,7 @@ public class Transaccion {
     }
 
     private String generarHash() throws NoSuchAlgorithmException {
-        String datos = idTransaccion + Arrays.toString(productos) + timestamp + hashAnterior;
+        String datos = obtenerDatosParaHash();
         return HashUtil.generarSHA256(datos);
     }
     
@@ -44,4 +43,9 @@ public class Transaccion {
                 ", hashActual='" + hashActual + '\'' +
                 '}';
     }
+
+    public String obtenerDatosParaHash() {
+        return idTransaccion + Arrays.toString(productos) + timestamp + hashAnterior;
+    }
+
 }

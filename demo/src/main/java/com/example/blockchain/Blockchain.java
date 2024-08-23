@@ -27,13 +27,13 @@ public class Blockchain {
     }
     
     public boolean validarCadena() {
-        for (int i = 1; i < cadena.size(); i++) {
+        for (int i = 1; i < cadena.size(); i++) { // Empieza desde el segundo bloque
             Transaccion actual = cadena.get(i);
             Transaccion anterior = cadena.get(i -1);
 
             // Validar hash actual
             try {
-                if (!actual.getHashActual().equals(HashUtil.generarSHA256(actual.toString())));
+                if (!actual.getHashActual().equals(HashUtil.generarSHA256(actual.obtenerDatosParaHash())));
                 return false;
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
@@ -44,14 +44,14 @@ public class Blockchain {
                 return false;
             }
         }
-        return true;
+        return true; // Si todos los hashes coinciden, la cadena es valida
     }
 
     public List<Transaccion> getCadena() {
         return cadena;
     }
 
-    @Override 
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         for (Transaccion transaccion : cadena) {
