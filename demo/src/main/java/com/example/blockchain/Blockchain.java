@@ -32,13 +32,12 @@ public class Blockchain {
             Transaccion anterior = cadena.get(i -1);
             
             // Mostrar el hash almacenado en la transacción actual
-            System.out.println("Hash actual (almacenado): " + actual.getHashActual());
-
+            //System.out.println("Hash actual (almacenado): " + actual.getHashActual());
 
             // Validar hash actual
             try {
                 String hashGenerado = HashUtil.generarSHA256(actual.obtenerDatosParaHash());
-                System.out.println("Hash actual (generado): " + hashGenerado);
+                //System.out.println("Hash actual (generado): " + hashGenerado);
 
                 // Comparar longitudes antes de hacer la comparación de contenido
                 if (actual.getHashActual().trim().length() != hashGenerado.length()) {
@@ -55,10 +54,10 @@ public class Blockchain {
             }
 
             // Mostrar el hash anterior almacenado en la transacción actual
-            System.out.println("Hash anterior (almacenado): " + actual.getHashAnterior());
+            //System.out.println("Hash anterior (almacenado): " + actual.getHashAnterior());
 
             // Mostrar el hash actual del bloque anterior
-            System.out.println("Hash anterior (del bloque anterior): " + anterior.getHashActual());
+            //System.out.println("Hash anterior (del bloque anterior): " + anterior.getHashActual());
 
 
             // Validar hash anterior
