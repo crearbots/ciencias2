@@ -25,7 +25,7 @@ public class Main {
         blockchain.agregarTransaccion("3", new Producto[]{datos.productos[100065], datos.productos[100066]});
 
         // Mostrar la blockchain
-        System.out.println(blockchain);
+        //System.out.println(blockchain);
         
         // Validar la blockchain
         System.out.println("¿Blockchain valida? " + blockchain.validarCadena());

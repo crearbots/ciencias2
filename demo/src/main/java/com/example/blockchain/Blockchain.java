@@ -30,17 +30,40 @@ public class Blockchain {
         for (int i = 1; i < cadena.size(); i++) { // Empieza desde el segundo bloque
             Transaccion actual = cadena.get(i);
             Transaccion anterior = cadena.get(i -1);
+            
+            // Mostrar el hash almacenado en la transacción actual
+            System.out.println("Hash actual (almacenado): " + actual.getHashActual());
+
 
             // Validar hash actual
             try {
-                if (!actual.getHashActual().equals(HashUtil.generarSHA256(actual.obtenerDatosParaHash())));
-                return false;
+                String hashGenerado = HashUtil.generarSHA256(actual.obtenerDatosParaHash());
+                System.out.println("Hash actual (generado): " + hashGenerado);
+
+                // Comparar longitudes antes de hacer la comparación de contenido
+                if (actual.getHashActual().trim().length() != hashGenerado.length()) {
+                    System.out.println("Error: Longitudes no coinciden en la transacción " + i);
+                    return false;
+                }
+
+                if (!actual.getHashActual().trim().equals(hashGenerado)) {
+                    System.out.println("Error: Hashes no coinciden en la transacción " + i);
+                    return false;
+                }
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
 
+            // Mostrar el hash anterior almacenado en la transacción actual
+            System.out.println("Hash anterior (almacenado): " + actual.getHashAnterior());
+
+            // Mostrar el hash actual del bloque anterior
+            System.out.println("Hash anterior (del bloque anterior): " + anterior.getHashActual());
+
+
             // Validar hash anterior
             if (!actual.getHashAnterior().equals(anterior.getHashActual())) {
+                System.out.println("Error: Hashes anteriores no coinciden en la transacción " + i);
                 return false;
             }
         }
