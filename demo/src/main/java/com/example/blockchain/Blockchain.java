@@ -81,4 +81,19 @@ public class Blockchain {
         }
         return builder.toString();
     }
+
+    public void modificarTransaccion(int indice,String idnuevo) throws NoSuchAlgorithmException {
+        if (indice < 0 || indice >= cadena.size()) {
+          throw new IllegalArgumentException("Índice inválido: " + indice);
+        }
+        Transaccion inicial = cadena.get(indice);
+        String id = inicial.getIDTransaccion();
+        Producto[] productos=inicial.getProductos();
+        String currentHash = inicial.getHashActual();
+        Transaccion modificada= new Transaccion(idnuevo, productos, indice, currentHash);
+        if (inicial!=modificada) {
+            System.out.println("¡Alerta! Intento de fraude");
+        }
+      }
+
 }

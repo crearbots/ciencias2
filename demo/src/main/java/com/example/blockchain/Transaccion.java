@@ -1,9 +1,9 @@
 package com.example.blockchain;
 
-import com.example.productos.Producto;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import com.example.productos.Producto;
 
 public class Transaccion {
     private String idTransaccion;
@@ -18,6 +18,14 @@ public class Transaccion {
         this.timestamp = timestamp;
         this.hashAnterior = hashAnterior;
         this.hashActual = generarHash();
+    }
+
+    public String getIDTransaccion(){
+        return idTransaccion;
+    }
+
+    public Producto[] getProductos(){
+        return productos;
     }
 
     private String generarHash() throws NoSuchAlgorithmException {
