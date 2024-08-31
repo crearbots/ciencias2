@@ -87,12 +87,14 @@ public class Blockchain {
           throw new IllegalArgumentException("Índice inválido: " + indice);
         }
         Transaccion inicial = cadena.get(indice);
-        String id = inicial.getIDTransaccion();
         Producto[] productos=inicial.getProductos();
         String currentHash = inicial.getHashActual();
         inicial= new Transaccion(idnuevo, productos, indice, currentHash);
         if (cadena.get(indice+1).getHashAnterior()!=inicial.getHashActual()) {
-            System.out.println("¡Alerta! Intento de fraude");
+            System.out.println("¡Alerta! Intento de fraude en la transaccion " + indice);
+            // Imprimir los hash
+            System.out.println("Hash original: " + cadena.get(indice+1).getHashAnterior());
+            System.out.println("Hash nuevo: " + inicial.getHashActual());
         }
       }
 
