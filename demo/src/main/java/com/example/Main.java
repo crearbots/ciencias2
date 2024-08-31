@@ -33,6 +33,8 @@ public class Main {
         // Modificar
         System.out.println("Se cambia el ID de la primera transacción");
         blockchain.modificarTransaccion(0, "3");
+        System.out.println("¿Blockchain valida? " + blockchain.validarCadena());
+        System.out.println(blockchain);
 /*------------------------------------------------------------
         // Instanciar la búsqueda secuencial
         BusquedaSecuencial busqueda = new BusquedaSecuencial();

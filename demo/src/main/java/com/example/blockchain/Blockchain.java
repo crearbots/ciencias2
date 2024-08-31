@@ -90,8 +90,8 @@ public class Blockchain {
         String id = inicial.getIDTransaccion();
         Producto[] productos=inicial.getProductos();
         String currentHash = inicial.getHashActual();
-        Transaccion modificada= new Transaccion(idnuevo, productos, indice, currentHash);
-        if (inicial!=modificada) {
+        inicial= new Transaccion(idnuevo, productos, indice, currentHash);
+        if (cadena.get(indice+1).getHashAnterior()!=inicial.getHashActual()) {
             System.out.println("¡Alerta! Intento de fraude");
         }
       }
